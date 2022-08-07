@@ -19,12 +19,10 @@ export const LoginPage = () => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    console.log({ email, password })
     dispatch(checkingAuthentication({ email, password }))
   }
 
   const onGoogleSignIn = () => {
-    console.log('google sign in')
     dispatch(startGoogleSignIn())
   }
 
