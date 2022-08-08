@@ -1,4 +1,4 @@
-import { TurnedInNot } from '@mui/icons-material'
+import { useSelector } from 'react-redux'
 import {
   Box,
   Divider,
@@ -12,14 +12,13 @@ import {
   Toolbar,
   Typography
 } from '@mui/material'
-import React from 'react'
+import { TurnedInNot } from '@mui/icons-material'
 
 export const SideBar = ({ drawerWidth = 240 }) => {
+  const { displayName } = useSelector((state) => state.auth)
+
   return (
-    <Box
-      component='nav'
-      sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-    >
+    <Box component='nav' sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
       <Drawer
         variant='permanent'
         sx={{
@@ -29,8 +28,8 @@ export const SideBar = ({ drawerWidth = 240 }) => {
         open
       >
         <Toolbar>
-          <Typography variant='h6' noWrap component='div'>
-            Wlad
+          <Typography variant='h6' noWrap component='div' textTransform="Capitalize">
+            {displayName}
           </Typography>
         </Toolbar>
         <Divider />
