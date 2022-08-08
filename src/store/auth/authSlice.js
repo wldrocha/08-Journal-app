@@ -6,7 +6,7 @@ const initialState = {
   email: null,
   displayName: null,
   photoUrl: null,
-  erroMessage: null
+  errorMessage: null
 }
 
 export const authSlice = createSlice({
@@ -19,16 +19,15 @@ export const authSlice = createSlice({
       state.email = payload.email
       state.displayName = payload.displayName
       state.photoUrl = payload.photoUrl
-      state.erroMessage = null
+      state.errorMessage = null
     },
-    logout: (state, payload) => {
+    logout: (state, { payload }) => {
       state.status = 'not-auntheicated'
       state.uid = null
       state.email = null
       state.displayName = null
       state.photoUrl = null
-      state.erroMessage = null
-      state.erroMessage = payload.erroMessage
+      state.errorMessage = payload.errorMessage
     },
     checkingCredentials: (state) => {
       state.status = 'checking'
