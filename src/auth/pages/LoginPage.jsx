@@ -7,15 +7,17 @@ import { startLoginWithEmailPassword, startGoogleSignIn } from '../../store'
 import { AuthLayout } from '../layout'
 import { useForm } from '../../hooks'
 
+const formData = {
+  email: '',
+  password: ''
+} 
+
 export const LoginPage = () => {
   const dispatch = useDispatch()
 
   const { status, errorMessage } = useSelector((state) => state.auth)
 
-  const { email, password, onInputChange } = useForm({
-    email: '',
-    password: ''
-  })
+  const { email, password, onInputChange } = useForm(formData)
 
   const isAuthenticathing = useMemo(() => status === 'checking', [status])
 
@@ -53,26 +55,16 @@ export const LoginPage = () => {
             ></TextField>
           </Grid>
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-          <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
+            <Grid item xs={12} display={!!errorMessage ? '' : 'none'}>
               <Alert severity='error'>{errorMessage}</Alert>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button
-                variant='contained'
-                fullWidth
-                type='submit'
-                disabled={isAuthenticathing}
-              >
+              <Button variant='contained' fullWidth type='submit' disabled={isAuthenticathing}>
                 Login
               </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button
-                variant='contained'
-                fullWidth
-                onClick={onGoogleSignIn}
-                disabled={isAuthenticathing}
-              >
+              <Button variant='contained' fullWidth onClick={onGoogleSignIn} disabled={isAuthenticathing}>
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>
               </Button>
