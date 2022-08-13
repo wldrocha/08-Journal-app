@@ -1,14 +1,17 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SaveOutlined } from '@mui/icons-material'
-import { Button, Grid, TextField, Typography } from '@mui/material'
+import { Alert, Button, Grid, TextField, Typography } from '@mui/material'
+import Snackbar from '@mui/material/Snackbar'
 import { useForm } from '../../hooks/useForm'
 import { ImageGallery } from '../components'
 import { setActiveNote, startSaveNote } from '../../store/journal'
 
 export const NoteView = () => {
   const dispatch = useDispatch()
-  const { active: note, isSaving } = useSelector((state) => state.journal)
+  const { active: note, isSaving, messageSaving } = useSelector((state) => state.journal)
+
+  const [open, setOpen] = useState(false)
 
   const { body, title, date, onInputChange, formState } = useForm(note)
 
@@ -16,11 +19,26 @@ export const NoteView = () => {
 
   const onSaveNote = () => {
     dispatch(startSaveNote())
+    
+  }
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpen(false)
   }
 
   useEffect(() => {
     dispatch(setActiveNote(formState))
   }, [formState])
+
+  useEffect(() => {
+    if (messageSaving.length > 0) {
+      setOpen(true)
+    }
+  }, [messageSaving])
 
   return (
     <Grid container direction='row' justifyContent='Space-between' sx={{ mb: 1 }}>
@@ -29,6 +47,15 @@ export const NoteView = () => {
           {dateString}
         </Typography>
       </Grid>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity='success'
+          sx={{ width: '100%' }}
+        >
+          {messageSaving}
+        </Alert>
+      </Snackbar>
       <Grid item>
         <Button sx={{ px: 2, py: 3 }} onClick={onSaveNote} disabled={!!isSaving}>
           <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
