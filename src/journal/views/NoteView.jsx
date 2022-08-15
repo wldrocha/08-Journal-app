@@ -60,7 +60,7 @@ export const NoteView = () => {
       </Snackbar>
       <Grid item>
         <input type='file' multiple onChange={onFilteInputChange} style={{ display: 'none' }} ref={fileInputRef} />
-        <IconButton onClick={() =>  fileInputRef.current.click()}>
+        <IconButton onClick={() => fileInputRef.current.click()}>
           <UploadOutlined />
         </IconButton>
         <Button sx={{ px: 2, py: 3 }} onClick={onSaveNote} disabled={!!isSaving}>
@@ -93,7 +93,7 @@ export const NoteView = () => {
           onChange={onInputChange}
         />
       </Grid>
-      <ImageGallery />
+      <ImageGallery images={note.imageUrls} />
     </Grid>
   )
 }
