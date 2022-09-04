@@ -7,14 +7,23 @@ import { getFirestore } from 'firebase/firestore/lite'
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyDFZCeS_FWypOJNejQb0KH2cD-4C-saT3w',
+//   authDomain: 'journal-app-8bfb0.firebaseapp.com',
+//   projectId: 'journal-app-8bfb0',
+//   storageBucket: 'journal-app-8bfb0.appspot.com',
+//   messagingSenderId: '501281969888',
+//   appId: '1:501281969888:web:a91c365530202e0f9f2285'
+// }
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyDFZCeS_FWypOJNejQb0KH2cD-4C-saT3w',
-  authDomain: 'journal-app-8bfb0.firebaseapp.com',
-  projectId: 'journal-app-8bfb0',
-  storageBucket: 'journal-app-8bfb0.appspot.com',
-  messagingSenderId: '501281969888',
-  appId: '1:501281969888:web:a91c365530202e0f9f2285'
-}
+  apiKey: "AIzaSyAiqEjPKw2KFcbNdyoZI0Gj9DQlAjJmkiE",
+  authDomain: "testing-54c41.firebaseapp.com",
+  projectId: "testing-54c41",
+  storageBucket: "testing-54c41.appspot.com",
+  messagingSenderId: "784889738992",
+  appId: "1:784889738992:web:046f4720c594ec88f9f435"
+};
 
 // Initialize Firebase
 export const FirebaseApp = initializeApp(firebaseConfig)
