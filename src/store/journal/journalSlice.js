@@ -8,7 +8,7 @@ const initialState = {
 }
 
 export const journalSlice = createSlice({
-  name: 'counter',
+  name: 'journal',
   initialState,
   reducers: {
     savingNote: (state) => {

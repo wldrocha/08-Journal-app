@@ -28,15 +28,15 @@ export const startCreatingUserWithEmailPassword = ({ email, password, displayNam
   return async (dispatch) => {
     dispatch(checkingCredentials())
 
-    const { success, uid, photoURL, errorMessage } = await registerUserWithEmailPassword({
+    const result = await registerUserWithEmailPassword({
       email,
       password,
       displayName
     })
 
-    if (!success) return dispatch(logout({ errorMessage }))
+    if (!result?.success) return dispatch(logout(result?.errorMessage))
 
-    dispatch(login({ uid, photoURL, email, displayName }))
+    dispatch(login(result))
   }
 }
 
@@ -44,11 +44,11 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
   return async (dispatch) => {
     dispatch(checkingCredentials())
 
-    const { success, uid, photoURL, displayName, errorMessage } = await loginWithEmailPassword({ email, password })
+    const result = await loginWithEmailPassword({ email, password })
 
-    if (!success) return dispatch(logout({ errorMessage }))
+    if (!result.success) return dispatch(logout(result))
 
-    dispatch(login({ uid, photoURL, email, displayName }))
+    dispatch(login(result))
   }
 }
 

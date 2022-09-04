@@ -10,7 +10,7 @@ import { useForm } from '../../hooks'
 const formData = {
   email: '',
   password: ''
-} 
+}
 
 export const LoginPage = () => {
   const dispatch = useDispatch()
@@ -32,7 +32,7 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout title='Login'>
-      <form onSubmit={onSubmit}>
+      <form aria-label='submit-form' onSubmit={onSubmit}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
@@ -50,6 +50,7 @@ export const LoginPage = () => {
               type='password'
               placeholder='pass'
               fullWidth
+              inputProps={{ 'data-testid': 'password' }}
               name='password'
               onChange={onInputChange}
             ></TextField>
@@ -64,7 +65,13 @@ export const LoginPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Button variant='contained' fullWidth onClick={onGoogleSignIn} disabled={isAuthenticathing}>
+              <Button
+                aria-label='google-button'
+                variant='contained'
+                fullWidth
+                onClick={onGoogleSignIn}
+                disabled={isAuthenticathing}
+              >
                 <Google />
                 <Typography sx={{ ml: 1 }}>Google</Typography>
               </Button>
